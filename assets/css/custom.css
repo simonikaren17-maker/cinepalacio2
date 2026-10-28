@@ -1,0 +1,235 @@
+/**
+ * Cine Palácio - Estilos Retrô Anos 70
+ * Inspiração estética: Material de divulgação de "O Agente Secreto" (2025) e "Cidade de Deus"
+ * Paleta: Âmbar solar, terracota, tabaco queimado, linho envelhecido, contraste cinematográfico
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@600;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Special+Elite&display=swap');
+
+:root {
+    --cor-fundo: #140E0A;
+    --cor-fundo-card: #201610;
+    --cor-fundo-card-hover: #2B1D15;
+    --cor-borda: #453022;
+    --cor-borda-destaque: #D97706;
+    --cor-ambar: #E5A93C;
+    --cor-laranja-queimado: #C2410C;
+    --cor-terracota: #9A3412;
+    --cor-creme: #FBF4EB;
+    --cor-creme-suave: #E8D8C5;
+    --cor-texto-mutado: #A89382;
+    --cor-ouro-antigo: #F59E0B;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-creme);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Tipografia Estilizada Retrô */
+.font-cartaz {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.font-cinema {
+    font-family: 'Cinzel', serif;
+}
+
+.font-vintage {
+    font-family: 'Special Elite', cursive;
+}
+
+/* Efeito de Granulação Cinematográfica dos anos 70 */
+.pelicula-grain {
+    background-image: 
+        radial-gradient(circle at 50% 20%, rgba(229, 169, 60, 0.08), transparent 70%),
+        radial-gradient(circle at 85% 80%, rgba(194, 65, 12, 0.06), transparent 60%);
+    position: relative;
+}
+
+.pelicula-grain::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Letreiro Cine Palácio com Brilho Neon Quente Anos 70 */
+.letreiro-neon {
+    color: #FFFBEB;
+    text-shadow: 
+        0 0 8px rgba(229, 169, 60, 0.8),
+        0 0 20px rgba(217, 119, 6, 0.6),
+        0 0 35px rgba(194, 65, 12, 0.4);
+    transition: all 0.3s ease;
+}
+
+.letreiro-neon:hover {
+    text-shadow: 
+        0 0 12px rgba(229, 169, 60, 0.95),
+        0 0 28px rgba(217, 119, 6, 0.8),
+        0 0 45px rgba(194, 65, 12, 0.6);
+}
+
+/* Molduras de Cartazes de Cinema */
+.cartaz-card {
+    background-color: var(--cor-fundo-card);
+    border: 1px solid var(--cor-borda);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cartaz-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--cor-ambar);
+    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(217, 119, 6, 0.25);
+}
+
+/* Selos Oficiais de Classificação Indicativa Brasileira */
+.classif-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    padding: 2px 6px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.classif-L { background-color: #00A859; color: #FFFFFF; }
+.classif-10 { background-color: #0091DA; color: #FFFFFF; }
+.classif-12 { background-color: #FFCC00; color: #18110D; }
+.classif-14 { background-color: #F37021; color: #FFFFFF; }
+.classif-16 { background-color: #ED1C24; color: #FFFFFF; }
+.classif-18 { background-color: #111111; color: #FFFFFF; border: 1px solid #4B5563; }
+
+/* Sistema de Avaliação com Estrelas Interativas */
+.estrelas-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.estrela-btn {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 2px;
+    font-size: 1.25rem;
+    color: #4B382A;
+    transition: color 0.15s ease, transform 0.15s ease;
+    line-height: 1;
+}
+
+.estrela-btn:hover,
+.estrela-btn.hover-ativo,
+.estrela-btn.ativa {
+    color: #FBBF24;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+}
+
+.estrela-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Modais Customizados Substitutos de alert/confirm nativo */
+.modal-overlay {
+    background-color: rgba(10, 7, 5, 0.85);
+    backdrop-filter: blur(6px);
+    transition: opacity 0.25s ease-out;
+}
+
+.modal-caixa {
+    background: linear-gradient(145deg, #241912, #18100B);
+    border: 1px solid #784E2D;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 20px rgba(217, 119, 6, 0.2);
+}
+
+/* Notificações TOAST com Visual Retrô */
+#toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 90vw;
+    width: 380px;
+    pointer-events: none;
+}
+
+.toast-item {
+    pointer-events: auto;
+    background: #231812;
+    border: 1px solid #63432B;
+    border-left: 5px solid #D97706;
+    color: #FAF0E6;
+    padding: 14px 18px;
+    border-radius: 6px;
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.toast-sucesso { border-left-color: #10B981; }
+.toast-erro { border-left-color: #EF4444; }
+.toast-aviso { border-left-color: #F59E0B; }
+.toast-info { border-left-color: #3B82F6; }
+
+@keyframes toastSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.toast-progresso {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background-color: var(--cor-ambar);
+    width: 100%;
+    animation: toastTime 4s linear forwards;
+}
+
+@keyframes toastTime {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #140E0A;
+}
+::-webkit-scrollbar-thumb {
+    background: #4A3525;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #D97706;
+}
