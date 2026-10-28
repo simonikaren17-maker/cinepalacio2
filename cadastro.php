@@ -1,0 +1,115 @@
+<?php
+/**
+ * Cine Palácio - Tela de Cadastro Simples
+ * Requisitos:
+ * - "o cadastro deve ser simples, com Email, e senha."
+ * - "Tratar senhas de usuários com hash bcrypt"
+ */
+
+require_once __DIR__ . '/config/bd.php';
+require_once __DIR__ . '/includes/auth.php';
+
+if (usuarioLogado()) {
+    header('Location: meu_espaco.php');
+    exit;
+}
+
+$tituloPagina = 'Criar Conta Simples';
+require_once __DIR__ . '/includes/header.php';
+?>
+
+<div class="max-w-md mx-auto my-6 sm:my-12">
+    <div class="bg-cine-card border border-cine-borda rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+        
+        <!-- Faixa Vintage Topo -->
+        <div class="text-center mb-8">
+            <div class="w-14 h-14 mx-auto rounded-full bg-gradient-to-br from-amber-500 to-cine-laranja p-0.5 shadow-lg mb-3">
+                <div class="w-full h-full bg-cine-tabaco rounded-full flex items-center justify-center text-amber-400">
+                    <i class="bi bi-person-plus-fill text-2xl"></i>
+                </div>
+            </div>
+            <h1 class="font-cartaz text-3xl sm:text-4xl text-white tracking-wider letreiro-neon">
+                CADASTRO CINE PALÁCIO
+            </h1>
+            <p class="text-xs font-vintage uppercase tracking-wider text-amber-400/90 mt-1">
+                Cadastro simples com apenas E-mail e Senha
+            </p>
+        </div>
+
+        <!-- Formulário de Cadastro Simples -->
+        <form action="actions/auth_cadastro.php" method="POST" class="space-y-4">
+            
+            <div>
+                <label for="email" class="block text-xs font-vintage uppercase text-stone-300 mb-1.5">
+                    Seu E-mail:
+                </label>
+                <div class="relative">
+                    <input type="email" 
+                           id="email" 
+                           name="email" 
+                           required 
+                           placeholder="seu@email.com"
+                           class="w-full bg-stone-900 border border-cine-borda rounded-lg pl-10 pr-4 py-2.5 text-sm text-stone-100 placeholder-stone-500 outline-none focus:border-cine-ambar focus:ring-1 focus:ring-cine-ambar transition">
+                    <i class="bi bi-envelope absolute left-3.5 top-3 text-stone-500 text-sm"></i>
+                </div>
+            </div>
+
+            <div>
+                <label for="senha" class="block text-xs font-vintage uppercase text-stone-300 mb-1.5">
+                    Criar Senha (Mínimo 6 caracteres):
+                </label>
+                <div class="relative">
+                    <input type="password" 
+                           id="senha" 
+                           name="senha" 
+                           required 
+                           minlength="6"
+                           placeholder="••••••••"
+                           class="w-full bg-stone-900 border border-cine-borda rounded-lg pl-10 pr-4 py-2.5 text-sm text-stone-100 placeholder-stone-500 outline-none focus:border-cine-ambar focus:ring-1 focus:ring-cine-ambar transition">
+                    <i class="bi bi-lock absolute left-3.5 top-3 text-stone-500 text-sm"></i>
+                </div>
+            </div>
+
+            <div>
+                <label for="confirmar_senha" class="block text-xs font-vintage uppercase text-stone-300 mb-1.5">
+                    Confirmar Senha:
+                </label>
+                <div class="relative">
+                    <input type="password" 
+                           id="confirmar_senha" 
+                           name="confirmar_senha" 
+                           required 
+                           minlength="6"
+                           placeholder="••••••••"
+                           class="w-full bg-stone-900 border border-cine-borda rounded-lg pl-10 pr-4 py-2.5 text-sm text-stone-100 placeholder-stone-500 outline-none focus:border-cine-ambar focus:ring-1 focus:ring-cine-ambar transition">
+                    <i class="bi bi-shield-check absolute left-3.5 top-3 text-stone-500 text-sm"></i>
+                </div>
+            </div>
+
+            <div class="p-3 bg-stone-950/60 border border-stone-800 rounded-lg text-xs text-stone-400 space-y-1">
+                <div class="flex items-center gap-1.5 text-amber-400 font-semibold">
+                    <i class="bi bi-shield-lock-fill"></i> Proteção Criptográfica
+                </div>
+                <p>Sua senha será protegida com hash seguro Bcrypt (padrão de mercado com salt dinâmico).</p>
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-lg bg-gradient-to-r from-cine-ambar to-cine-laranja text-stone-950 font-bold text-sm tracking-wide shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2 mt-2">
+                <i class="bi bi-check2-circle text-base"></i> Finalizar Cadastro
+            </button>
+
+        </form>
+
+        <!-- Rodapé do Card -->
+        <div class="mt-8 pt-6 border-t border-stone-800 text-center">
+            <p class="text-xs text-stone-400">
+                Já possui cadastro no Cine Palácio?
+                <a href="login.php" class="text-amber-400 hover:text-amber-300 font-bold ml-1 transition">
+                    Faça login aqui &rarr;
+                </a>
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<?php require_once __DIR__ . '/includes/footer.php'; ?>
